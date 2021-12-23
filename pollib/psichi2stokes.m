@@ -1,7 +1,7 @@
-%PSICHI2STOKES   Convert the angles PSI and CHI into Stokes vectors.
+%PSICHI2STOKES   Convert the angles PSI and CHI into normalised Stokes vectors.
 %   [STOKES] = PSICHI2STOKES(PSI, CHI) converts a series of spherical
-%   angles PSI and CHI into three-elements Stokes vectors STOKES. STOKES is
-%   an 3xM matrix.
+%   angles PSI and CHI into three-elements, normalised Stokes vectors STOKES.
+%   STOKES is an 3xM matrix.
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [stokes] = psichi2stokes(psi, chi)

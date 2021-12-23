@@ -1,6 +1,9 @@
 %JONES2MUELLER   Convert a Jones matrix into a Mueller matrix.
 %   [M] = JONES2MUELLER(J) computes the Mueller matrix M corresponding to
-%   the Jones matrix J.
+%   the Jones matrix J. See Eq. (19) in [1].
+%
+%   [1] He, Chao, Jacopo Antonello, and Martin J. Booth. "Vectorial adaptive
+%   optics." arXiv preprint arXiv:2110.02606 (2021).
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [M] = jones2mueller(J)

@@ -1,6 +1,10 @@
 %MUELLER2JONES   Convert a Mueller matrix into a Jones matrix.
 %   [J] = MUELLER2JONES(M, VARARGIN) computes one of the Jones matrices
-%   associated to the Mueller matrix M.
+%   associated to the Mueller matrix M. The element corresponding to M is
+%   assumed to be a pure retarder. See Eq. (20) in [1].
+%
+%   [1] He, Chao, Jacopo Antonello, and Martin J. Booth. "Vectorial adaptive
+%   optics." arXiv preprint arXiv:2110.02606 (2021).
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [J] = mueller2jones(M, varargin)
