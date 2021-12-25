@@ -16,9 +16,9 @@ view(pc.azim, pc.elev);
 box on;
 axis off;
 
-set(gca,'XTick',[]);
-set(gca,'YTick',[]);
-set(gca,'ZTick',[]);
+set(gca, 'XTick', []);
+set(gca, 'YTick', []);
+set(gca, 'ZTick', []);
 
 red = [0.6350, 0.0780, 0.1840];
 green = [0.4660, 0.6740, 0.1880];
