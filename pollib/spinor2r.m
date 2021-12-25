@@ -1,11 +1,10 @@
 %SPINOR2R   Convert a Jones vector to a normalised Stokes vector.
-%   [R] = SPINOR2R(S) returns the three-elements real-valued Stokes vector R
-%   corresponding to the two-elements complex-valued Jones vector S. See Eq.
-%   (5) in [1].
+%   [R] = SPINOR2R(S) returns the three-elements real-valued Stokes vector
+%   R corresponding to the two-elements complex-valued Jones vector S. See
+%   Eq. (5) in [1].
 %
-%   [1] He, Chao, Jacopo Antonello, and Martin J. Booth. "Vectorial adaptive
-%   optics." arXiv preprint arXiv:2110.02606 (2021).
-%
+%   [1] He, Chao, Jacopo Antonello, and Martin J. Booth. "Vectorial
+%   adaptive optics." arXiv preprint arXiv:2110.02606 (2021).
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [r] = spinor2r(s)

@@ -1,4 +1,4 @@
-%STOKES2PSICHI   Convert normalised Stokes vectors to the PSI and CHI angles.
+%STOKES2PSICHI   Convert normalised Stokes vectors to PSI and CHI.
 %   [PSI, CHI] = STOKES2PSICHI(STOKES) converts a series of Stokes vectors
 %   into the corresponding spherical angles PSI and CHI. STOKES is an 3xM
 %   matrix represented three-elements Stokes vectors. The angles are in the
