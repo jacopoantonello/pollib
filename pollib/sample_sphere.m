@@ -1,7 +1,4 @@
-%R2SPINOR   Convert a normalised Stokes vector into a Jones vector.
-%   [S] = R2SPINOR(R) returns one of the two-elements complex-valued Jones
-%   vectors S corresponding to the three-elements real-valued Stokes vector
-%   R.
+%SAMPLE_SPHERE   Sample the unit sphere.
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [Sin] = sample_sphere(nsamp)
