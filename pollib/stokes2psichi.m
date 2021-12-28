@@ -7,12 +7,19 @@
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [psi, chi] = stokes2psichi(stokes)
 
-assert(size(stokes, 1) == 3);
-psi = atan2(stokes(2, :), stokes(1, :));
+siz1 = size(stokes, 1);
+siz2 = size(stokes, 2);
+siz3 = size(stokes, 3);
+
+assert(siz1 == 3);
+
+stokes2 = reshape(stokes, 3, siz2*siz3);
+
+psi = atan2(stokes2(2, :), stokes2(1, :));
 psi(psi < 0) = psi(psi < 0) + 2*pi;
 psi = psi/2;
 
-chi = asin(stokes(3, :))/2;
+chi = asin(stokes2(3, :))/2;
 
 map = isfinite(psi(:));
 assert(min(2*psi(map)) >= 0);
@@ -20,9 +27,12 @@ assert(max(2*psi(map)) <= 2*pi);
 assert(min(2*chi(map)) >= -pi/2);
 assert(max(2*chi(map)) <= pi/2);
 
-stokes2 = psichi2stokes(psi, chi);
+psi = reshape(psi, siz2, siz3);
+chi = reshape(chi, siz2, siz3);
+
+stokes3 = psichi2stokes(psi, chi);
 map1 = isfinite(stokes);
-err = abs(stokes - stokes2);
+err = abs(stokes - stokes3);
 err = err(map1(:));
 assert(max(err) < 1e-7);
 end

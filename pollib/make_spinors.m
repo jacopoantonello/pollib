@@ -1,4 +1,4 @@
-%MAKE_SPINORS   Make a Jones vector of a set of Jones vectors.
+%MAKE_SPINORS   Make set of Jones vectors.
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [ji] = make_spinors(jis, xx, yy)
@@ -17,10 +17,16 @@ if ischar(jis)
         ji = [1; 1j]/sqrt(2);
     elseif strcmp(jis, 'radial')
         th = atan2(yy, xx);
-        ji = [reshape(cos(th), 1, []); reshape(sin(th), 1, [])];
+        siz = size(xx);
+        ji = zeros([2, siz]);
+        ji(1, :, :) = cos(th);
+        ji(2, :, :) = sin(th);
     elseif strcmp(jis, 'azimuthal')
         th = atan2(yy, xx);
-        ji = [reshape(-sin(th), 1, []); reshape(cos(th), 1, [])];
+        siz = size(xx);
+        ji = zeros([2, siz]);
+        ji(1, :, :) = -sin(th);
+        ji(2, :, :) = cos(th);
     else
         throw(MException('VerifyOutput:IllegalInput', ...
             ['Choose from H, V, +45, -45, RC, LC, radial, or azimuthal, ' ...
@@ -31,8 +37,8 @@ else
     ji = jis(:)/norm(jis);
 end
 
-if exist('xx', 'var') && numel(ji) == 2
-    ji = repmat(ji, [1, numel(xx)]);
+if exist('xx', 'var') && numel(ji) ~= 2*numel(xx)
+    ji = repmat(ji, [1, size(xx)]);
 end
 end
 

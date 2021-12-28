@@ -5,12 +5,14 @@
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [stokes] = psichi2stokes(psi, chi)
-
-assert(size(psi, 1) == 1);
-assert(size(chi, 1) == 1);
+s1 = size(psi, 1);
+s2 = size(psi, 2);
+chi = reshape(chi, 1, s1*s2);
+psi = reshape(psi, 1, s1*s2);
 stokes = [
         cos(2*chi).*cos(2*psi);
         cos(2*chi).*sin(2*psi);
         sin(2*chi);
         ];
+stokes = reshape(stokes, 3, s1, s2);
 end
