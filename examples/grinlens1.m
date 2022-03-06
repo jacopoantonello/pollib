@@ -77,6 +77,7 @@ stokes = reshape(stokes, [3, siz1]);
 %% plot 3-Stokes field
 
 sfigure(3);
+clf();
 plot_stokes_ellipses(stokes, xx, yy, 'fill', 1);
 title('Stokes field');
 
