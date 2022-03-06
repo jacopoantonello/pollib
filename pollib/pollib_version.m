@@ -1,7 +1,7 @@
 function pollib_version()
     fprintf('Version 0.0.1\n');
     fprintf('\n');
-    fprintf('Copyright 2021 Jacopo Antonello\n');
+    fprintf('Copyright 2021-2022 Jacopo Antonello\n');
     fprintf('\n');
     fprintf('Licensed under the Apache License, Version 2.0 (the "License");\n');
     fprintf('you may not use this file except in compliance with the License.\n');

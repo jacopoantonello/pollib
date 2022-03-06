@@ -2,6 +2,16 @@
 %   PLOT_STOKES_ELLIPSES(STOKES, XX, YY, VARARGIN) plots the polarisation
 %   ellipses corresponding to the three-elements Stokes vectors specified
 %   in STOKES.
+% 
+%   DOWNSAMPLE downsample STOKES
+%   ABSOLUTECMAP use an absolute or relative colour map
+%   SCALE scale the ellipses
+%   CMAP use the provided colour map
+%   FILL fill ellipses
+%   ARROW plot a symbol over the ellipses
+%   BACKGROUND background colour
+%   LINEWIDTH stroke linewidth
+%   HSV use hue-saturation-value colourmap
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
 function [] = plot_stokes_ellipses(stokes, xx, yy, varargin)
@@ -126,8 +136,6 @@ for i=1:numel(mask)
                 'FaceColor', col, ...
                 'EdgeColor', col);
             hold off;
-            h.EdgeAlpha = p.Results.alpha1;
-            h.FaceAlpha = p.Results.alpha2;
         else
             xyp = R*[
                 dx*scale1*cos(chi)*cos(-omegat);
