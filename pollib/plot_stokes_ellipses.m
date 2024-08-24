@@ -14,7 +14,7 @@
 %   HSV use hue-saturation-value colourmap
 %
 %   This file is part of the PolLib library. See also POLLIB_VERSION.
-function [] = plot_stokes_ellipses(stokes, xx, yy, varargin)
+function [psi1, chi1] = plot_stokes_ellipses(stokes, xx, yy, varargin)
 
 p = inputParser;
 addRequired(p, 'stokes');
@@ -31,11 +31,11 @@ addOptional(p, 'linewidth', 1);
 addOptional(p, 'hsv', 0);
 addOptional(p, 'alpha1', 1);
 addOptional(p, 'alpha2', 1);
-addOptional(p, 'arrowsize', 12);
+addOptional(p, 'arrowsize', 8);
 addOptional(p, 'arrowmarker', '.');
 parse(p, stokes, xx, yy, varargin{:});
 downsample = p.Results.downsample;
-scale1 = .45*p.Results.scale;
+scale1 = .4*p.Results.scale;
 arrowSize = p.Results.arrowsize;
 arrowMarker = p.Results.arrowmarker;
 
@@ -106,6 +106,7 @@ omegatfull = (0:(Nsamp - 1))*(2*pi/Nsamp);
 
 dx = xx2(1, 2) - xx2(1, 1);
 dy = yy2(2, 1) - yy2(1, 1);
+scale2 = min([dx, dy])*scale1;
 lxx = xx2(:);
 lyy = yy2(:);
 heights = p.Results.cmap;
@@ -126,8 +127,8 @@ for i=1:numel(mask)
         col = get_col(S);
         if p.Results.fill
             xyp = R*[
-                dx*scale1*cos(chi)*cos(-omegatfull);
-                dy*scale1*sin(chi)*sin(-omegatfull)
+                scale2*cos(chi)*cos(-omegatfull);
+                scale2*sin(chi)*sin(-omegatfull)
                 ] + kron(ones(1, numel(omegatfull)), [x0; y0]);
             
             hold on;
@@ -138,8 +139,8 @@ for i=1:numel(mask)
             hold off;
         else
             xyp = R*[
-                dx*scale1*cos(chi)*cos(-omegat);
-                dy*scale1*sin(chi)*sin(-omegat)
+                scale2*cos(chi)*cos(-omegat);
+                scale2*sin(chi)*sin(-omegat)
                 ] + kron(ones(1, numel(omegat)), [x0; y0]);
             
             hold on;
@@ -147,8 +148,8 @@ for i=1:numel(mask)
                 [col, p.Results.alpha1], 'LineWidth', p.Results.linewidth);
             if ~isempty(arrow)
                 xyp = R*[
-                    dx*scale1*cos(chi)*cos(-arrow(i));
-                    dy*scale1*sin(chi)*sin(-arrow(i))
+                    scale2*cos(chi)*cos(-arrow(i));
+                    scale2*sin(chi)*sin(-arrow(i))
                     ] + [x0; y0];
                 plot(xyp(1), xyp(2), arrowMarker, 'Color', col, ...
                     'MarkerSize', arrowSize);
@@ -159,10 +160,6 @@ for i=1:numel(mask)
 end
 set(gca, 'Color', back_colour, 'xcolor', back_colour, 'ycolor', back_colour);
 axis equal;
-span = 1.05;
-ylim([-span, span]);
-xlim([-span, span]);
-set(gca, 'XTick', [], 'YTick', []);
 
     function [col_] = get_col(S_)
         if p.Results.hsv
